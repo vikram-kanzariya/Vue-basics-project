@@ -1,6 +1,6 @@
 <script setup>
   import { ref } from 'vue';
-  import AddCounter from './components/AddCounter.vue';
+  import LifeCycleHooks from './components/LifeCycleHooks.vue';
   // import TemplateSyntax from './components/TemplateSyntax.vue'
   // import DemoData from './components/DemoData.vue';
   
@@ -15,12 +15,14 @@
 </script>
 
 <template>
-    <DemoData/>
+      <LifeCycleHooks />
+
+    <!-- <DemoData/> -->
+    <!-- <TemplateSyntax /> -->
     <h4>Hello Every-One</h4>
     <button @click="multiplication">Click for Multiplying:  {{ multiply }}</button>
-    <TemplateSyntax />
 
-    <AddCounter />
+
 
 
 </template>

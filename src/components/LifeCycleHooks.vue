@@ -1,6 +1,6 @@
 <!----- This is Composition APIs ----->
 <script setup>
-import { ref , onMounted } from 'vue';
+import { ref , onMounted, onUpdated, onUnmounted } from 'vue';
 
 // Reactive State
 const count = ref(0);
@@ -12,8 +12,29 @@ function increment() {
 
 // lifecycle hooks
 onMounted(() => {
-  console.log(`The initial count is: ${count.value}.`)
+  count.value 
+  console.log(`The initial count is: ${count.value}.`);
 });
+
+let name = ref("");
+let address = ref("");
+
+onUpdated(() => {
+  console.log(`Current Count is: ${count.value}`)
+  console.log(`Name Changed: ${name.value}`)
+  console.log(`Address Changed: ${address.value}`)
+});
+
+let intervalId;
+onMounted(() => {
+  intervalId.setInterval(() => {
+    console.log("Hello World")
+  }, 2000);
+});
+
+onUnmounted(() => {
+  clearInterval(intervalId);
+})
 
 let number = ref(0);
 
@@ -40,6 +61,14 @@ function popUp(){
 </script>
 
 <template>
+  <h3>Name is: {{ name }}</h3>
+  <h3>Address is: {{ address }}</h3>
+
+  <button @click="name=`Vikram`">Name</button>
+  <button @click="address=`Ahmedabad`">Address</button>
+
+  <br><br>
+
   <button @click="increment">Count is: {{ count }}</button>
 
   <p v-bind="Arrays">Number is: {{ number }}</p>
@@ -53,4 +82,5 @@ function popUp(){
 
   <a v-bind:href="url">Click here</a>
   <button @click="popUp">Button-1</button>
+
 </template>

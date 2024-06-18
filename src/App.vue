@@ -1,18 +1,16 @@
 <script setup>
-  import { computed, ref } from 'vue';
+  // import { computed, ref } from 'vue';
   // import LifeCycleHooks from './components/LifeCycleHooks.vue';
   // import TemplateSyntax from './components/TemplateSyntax.vue'
   // import DemoData from './components/DemoData.vue';
-  import StateManagement from './components/StateManagement.vue';
-  import ConditionalRendering from './components/ConditionalRendering.vue';
+  // import StateManagement from './components/StateManagement.vue';
+  // import ConditionalRendering from './components/ConditionalRendering.vue';
+  // import ListRenderingVue from './components/ListRendering.vue';
+  // import VueHooks from './components/VueHooks.vue';
+  // import EventHandling from './components/EventHandling.vue';
+  // import ComputedProperties from './components/ComputedProperties.vue';
+  import VueWatchers from './components/VueWatchers.vue';
   
-  let multiply = ref(1);
-  let i=1;
-  function multiplication(){
-    ++i;
-    multiply.value = multiply.value * i;
-    return multiply.value;
-  }
 
   // const activeClass = ref('active');
   // const errorClass = ref('text-danger');
@@ -21,19 +19,38 @@
   // const hasError = ref(true);
 
 
-  const isActive = ref(true);
-  const error = ref(null);
+  // const isActive = ref(true);
+  // const error = ref(null);
 
-  const classObject = computed(() => ({
+  // const classObject = computed(() => ({
     
-    active:isActive.value && !error.value ,
-    'text-danger' : error.value&& error.value.type === 'fatal',
-  }
-  ));
+  //   active:isActive.value && !error.value ,
+  //   'text-danger' : error.value&& error.value.type === 'fatal',
+  // }
+  // ));
+
+  // const message = () => { alert("Messaged U")}
+
+  // function increase(){
+  //   let counts = ref(0);
+  //   console.log("Increase Event Called")
+  //   // counts.value = counts.value + 5
+  //   counts.value += 5;
+
+  //   console.log(counts.value)
+  // }
 
 </script>
 
 <template>
+
+  <ListRenderingVue />
+  <VueHooks />
+  <!-- <EventHandling @some-event.once="message"/> -->
+  <!-- <EventHandling @increase-by="increase"/> -->
+  <EventHandling />
+  <ComputedProperties />
+  <VueWatchers />
 
   <!-- <div :class="[activeClass , errorClass]">
     Static Div
@@ -43,18 +60,17 @@
     Static Div
   </div> -->
 
-  <div :class="classObject">
+  <!-- <div :class="classObject">
     Static Div
-  </div>
+  </div> -->
+
     <!-- <LifeCycleHooks /> -->
     <!-- <DemoData/> -->
     <!-- <TemplateSyntax /> -->
-    <h4>Hello Every-One</h4>
-    <button @click="multiplication">Click for Multiplying:  {{ multiply }}</button>
+   
 
-
-  <StateManagement class="baz"/>
-  <ConditionalRendering />
+  <!-- <StateManagement class="baz"/>
+  <ConditionalRendering /> -->
 
 
 

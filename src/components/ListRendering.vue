@@ -1,16 +1,36 @@
 <script setup>
-  // import { ref } from 'vue';
-  import { computed, reactive, ref } from 'vue';
+  import { reactive, ref } from 'vue';
+  // import { computed, reactive, ref } from 'vue';
 
   // const parentMsg = ref('Parent');
   // const items = ref([{ message: 'Foo' }, { message: 'Bar' }])
 
   // V-for in objects
-  const myObject = reactive({
-  Title: 'How to do lists in Vue',
-  Author: 'Jane Doe',
-  PublishedAt: '2016-04-10'
-})
+//   const myObject = reactive({
+//   Title: 'How to do lists in Vue',
+//   Author: 'Jane Doe',
+//   PublishedAt: '2016-04-10'
+// });
+
+const fruitsObject = ref(['apple' , 'banana' , 'orange', 'mango' , 'watermelon' , 'guvava'])
+
+const users = reactive([
+{
+  fname:"Vikram",
+  lname:"Kanzariya",
+  age:21,
+},
+{
+  fname:"Alpesh",
+  lname:"Prajapati",
+  age:21,
+},
+{
+  fname:"Raj",
+  lname:"Koradiya",
+  age:21,
+},
+]);
 
 
 
@@ -23,24 +43,30 @@
 // }
   
 
-const numbers = ref([1 , 2 , 3, 4, 5 , 6])
+// const numbers = ref([1 , 2 , 3, 4, 5 , 6])
 
-const evenNumber = computed(() => {
-  return numbers.value.filter((n) => n % 2 == 0)
-});
+// const evenNumber = computed(() => {
+//   return numbers.value.filter((n) => n % 2 == 0)
+// });
 
-const sets = ref([1 , 2 , 3 , 4 , 5 , 6 , 7 , 8 , 9 ,10]);
+// const sets = ref([1 , 2 , 3 , 4 , 5 , 6 , 7 , 8 , 9 ,10]);
 
-function oddArr(numbers){
-  return numbers.filter((n) => n % 2 === 1)
-}
+// function oddArr(numbers){
+//   return numbers.filter((n) => n % 2 === 1)
+// }
 
 </script>
 
 <template>
   <div>
+    
+    <p v-for="fruit in fruitsObject" :key="fruit" >Fruits With Key: {{ fruit }}</p>
 
-    <ul v-for="numbers in sets" :key="numbers">
+<!-- <p>{{ users }}</p> -->
+<p v-for="user in users" :key="user" :f-name="user.fname" :name="user.lname">{{ user }}</p>
+
+
+    <!-- <ul v-for="numbers in sets" :key="numbers">
       <li v-for="n in oddArr(numbers)" :key="n">{{ n }}</li> 
     </ul>
 
@@ -50,7 +76,7 @@ function oddArr(numbers){
     <li v-for="n in evenNumber" :key="n">{{ n }}</li>
     
     <ul v-for="item in myObject" :key="item">
-      <li v-if="(item )"> {{ item }}</li>
+      <li v-if="(item )"> {{ item }}</li> -->
 
 
 
@@ -78,7 +104,7 @@ function oddArr(numbers){
       <!-- v-for in/with range -->
       <!-- <li v-for="(n) in 10" :key="n">{{ n }}</li> -->
 
-    </ul>
+    <!-- </ul> -->
   </div>
 </template>
 

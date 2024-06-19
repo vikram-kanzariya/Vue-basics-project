@@ -58,8 +58,6 @@
     <button  @click="stores.add">Add by-5</button>
 
 
-
-
   <p :class="$attrs.class">Hi!</p>
   <span>This is a Child Component</span>
 

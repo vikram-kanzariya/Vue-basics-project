@@ -1,5 +1,5 @@
 <script setup>
-import { ref, watch } from 'vue'
+import { ref, watch , watchEffect } from 'vue'
 
 const question = ref('')
 const answer = ref('Questions usually contain a question mark. ;-)')
@@ -21,20 +21,102 @@ watch(question  , async (newQuestion) => {
   }
 })
 
-const x = ref(0);
-const y = ref(0);
 
-watch(x , (newX) => {
-  console.log(`X is: ${newX}`);
+let rangeVal = ref(100);
+watch(rangeVal , function(){
+  console.log("watcher is Called")
+  if(rangeVal.value > 20 && rangeVal.value < 60){
+    if(rangeVal.value < 40){
+      return rangeVal.value = 20;
+    }
+    else{
+      return rangeVal.value = 60;
+    }
+  }
+});
+
+let inputAddress = ref("");
+let outputText = ref("");
+let myClass = 'invalid';
+
+watch(inputAddress , (newVal , oldVal) => {
+  console.log("Watcher is Called :) :)")
+
+  console.log("New Value: " , newVal);
+  console.log("Old Value: " , oldVal);
+
+  if(!newVal.includes('@')){
+    outputText.value ='The Email is Invalid';
+    myClass = 'invalid'
+  }
+  else if(!oldVal.includes('@') && newVal.includes('@')){
+    outputText.value = 'You have Fixed the Issue :) :)';
+    myClass = 'valid'
+  }
+  else{
+    outputText.value = 'The e-mail address is valid :) :)';
+  }
+});
+
+
+  const todoId = ref(1)
+  const data = ref(null)
+
+  watch(
+    todoId,
+    async () => {
+      const response = await fetch(
+        `https://jsonplaceholder.typicode.com/todos/${todoId.value}`
+      )
+      data.value = await response.json()
+      console.log(data.value)
+    },
+    // { immediate: true , flush:'post' , once:true  }
+  );
+
+
+watchEffect(() => {
+  if (data.value) {
+    // do something when data is loaded
+    console.log(data.value)
+  }
 })
+
+  
+
 </script>
 
 <template>
+
+  <button @click="todoId++">ToDo: {{ todoId }}</button>
+
+<div>
+  <label for="">  
+    <p>Type a valid e-mail address:</p>
+    <input v-model="inputAddress" type="" />
+  </label>
+  <p :class="myClass">{{ outputText }}</p>
+
+</div>
+
   <p>
     Ask a yes/no question:
     <input v-model="question" :disabled="loading" />
   </p>
   <p>{{ answer }}</p>
 
-  <p>{{ x  }}:{{ y }}</p>
+
+  <input v-model="rangeVal" type='range' />
+  <p>Range is: {{ rangeVal }}</p>
+
 </template>
+
+<style>
+.invalid{
+  color: red;
+}
+
+.valid{
+  color: green;
+}
+</style>

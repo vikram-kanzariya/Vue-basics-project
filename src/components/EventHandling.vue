@@ -1,8 +1,6 @@
 <script setup>
 import { ref } from 'vue';
 
-
-
   function clieckMe(){
     alert("You Clicked Button")
   }
@@ -82,7 +80,8 @@ function clickCtrl(){
 <!-- <input @keyup.enter.once ="submit" placeholder="press Enter-key"/> -->
 
 <!-- Esc , down , up , left , right , delete/backspace , Enter , pageDown/up , tab , space-->
-<input @keyup.delete="onPageDown" placeholder="PageDown key"/>
+<!-- <input @keyup.delete="onPageDown" placeholder="PageDown key"/> -->
+<input @keyup.page-down="onPageDown" placeholder="PageDown key"/>
 
     <div class="self" @click.self="doThat">
       <p>hello</p>

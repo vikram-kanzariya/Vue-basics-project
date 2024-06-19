@@ -19,10 +19,12 @@
   function doSomething(){
     alert('do something')
   }
+ 
 </script>
 
 <template>
   <div>
+    <h4 :style="cssObject">Css Object H4</h4>
     <h3 v-if="awesome">Vue.js is Awesome!!!</h3>
     <h3 v-else>Some Error Occured...</h3>
 
